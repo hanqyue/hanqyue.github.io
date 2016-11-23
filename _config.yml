@@ -5,12 +5,12 @@
 # Site
 title: 涵月的小站
 subtitle:
-description:如果你没在做那最重要的事，那又在做些什么呢？
-author: Felicia Cui
+description: 如果你没在做那最重要的事，那又在做些什么呢？
+author: Ms.Felicia
 language: zh-Hans
 timezone: 
 keywords: [android, github, 技术博客, 移动开发, google]
-avatar: 
+avatar: /images/avatar.jpeg
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -68,9 +68,15 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: next
 
+## baidu analytics
+baidu_analytics: d949f56abb36d144e49c4e2f321b289a
+
+plugins:
+- hexo-generator-cname
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:git
+  type: git
   repo: 
     github: https://github.com/hanqyue/hanqyue.github.io.git,master
