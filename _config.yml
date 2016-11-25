@@ -10,7 +10,10 @@ author: Ms.Felicia
 language: zh-Hans
 timezone: 
 keywords: [android, github, 技术博客, 移动开发, google]
-avatar: /images/avatar.jpeg
+avatar: /images/avatar.jpg
+
+#多说
+#duoshuo_shortname: xxx.duoshuo.com
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -71,7 +74,7 @@ theme: next
 ## baidu analytics
 baidu_analytics: d949f56abb36d144e49c4e2f321b289a
 
-plugins:
+Plugins:
 - hexo-generator-cname
 
 # Deployment

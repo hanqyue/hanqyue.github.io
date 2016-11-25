@@ -18,7 +18,7 @@ feed:
   limit: 20
   hub:
 # Specify the date when the site was setup
-since: 2016
+#since: 2015
 
 
 
@@ -33,7 +33,8 @@ menu:
   categories: /categories
   #about: /about
   archives: /archives
-  tags: /android
+  tags: /tags
+  About: /About
   #commonweal: /404.html
 
 
@@ -137,19 +138,19 @@ social_icons:
   enable: true
   # Icon Mappings.
   # KeyMapsToSocalItemKey: NameOfTheIconFromFontAwesome
-  GitHub: github
-  enable: true
+  #GitHub: github
+  #enable: true
   # Icon Mappings.
   # KeyMapsToSocalItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
-  简书: jianshu
+  简书: jian
   Weibo: weibo
 
 
 # Sidebar Avatar
- in theme directory(source/images): /images/avatar.jpeg
+# in theme directory(source/images): /images/avatar.jpeg
 # in site  directory(source/uploads): /uploads/avatar.jpg
-#avatar:
+avatar: /images/avatar.jpg 
 
 
 # Table Of Contents in the Sidebar
