@@ -12,11 +12,7 @@ keywords: "Hexo, NexT"
 # Leave rss as empty to use site's feed link.
 # Set rss to specific value if you have burned your feed already.
 rss:
-feed:
-  type: atom
-  path: atom.xml
-  limit: 20
-  hub:
+
 # Specify the date when the site was setup
 #since: 2015
 
@@ -143,7 +139,7 @@ social_icons:
   # Icon Mappings.
   # KeyMapsToSocalItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
-  简书: jian
+  简书: twitter
   Weibo: weibo
 
 
@@ -303,9 +299,9 @@ facebook_sdk:
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
-  enable: false
-  app_id: #<app_id>
-  app_key: #<app_key>
+  enable: true
+  app_id: d7fLMmsvRPaPGFhukBds981x-gzGzoHsz
+  app_key: dWYwRtcqQETH8vlBpWgsnV3K
 
 # Show PV/UV of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
