@@ -235,7 +235,7 @@ auto_excerpt:
 
 # MathJax Support
 mathjax:
-  enable: false
+  enable: true
   cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 
@@ -252,13 +252,13 @@ mathjax:
 #disqus_shortname:
 
 # Baidu Share
-# Available value:
+ Available value: slide
 #    button | slide
-#baidushare:
+baidushare: true
 ##  type: button
 
 # Share
-#jiathis:
+jiathis: true
 #add_this_id:
 
 # Share
