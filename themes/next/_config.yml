@@ -252,13 +252,13 @@ mathjax:
 #disqus_shortname:
 
 # Baidu Share
- Available value: slide
+# Available value: slide
 #    button | slide
-baidushare: true
+#baidushare: true
 ##  type: button
 
 # Share
-jiathis: true
+#jiathis: true
 #add_this_id:
 
 # Share
