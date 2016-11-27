@@ -83,6 +83,7 @@ baidu_analytics: d949f56abb36d144e49c4e2f321b289a
 
 Plugins:
 - hexo-generator-cname
+- hexo-generator-feed
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
