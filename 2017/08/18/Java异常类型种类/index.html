@@ -102,16 +102,19 @@
 
 
 
-<meta name="description" content="关注本质，解其源型">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://coder-felicia.cn/tags/index.html">
+<meta name="description" content="总结自http://blog.csdn.net/woshixuye/article/details/8230407
+Throwable是所有异常的根，java.lang.ThrowableError是错误，java.lang.ErrorException是异常，java.lang.Exception">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java异常种类">
+<meta property="og:url" content="http://coder-felicia.cn/2017/08/18/Java异常类型种类/index.html">
 <meta property="og:site_name" content="涵月的小站">
-<meta property="og:description" content="关注本质，解其源型">
-<meta property="og:updated_time" content="2017-04-21T08:54:18.000Z">
+<meta property="og:description" content="总结自http://blog.csdn.net/woshixuye/article/details/8230407
+Throwable是所有异常的根，java.lang.ThrowableError是错误，java.lang.ErrorException是异常，java.lang.Exception">
+<meta property="og:updated_time" content="2017-08-18T08:30:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="关注本质，解其源型">
+<meta name="twitter:title" content="Java异常种类">
+<meta name="twitter:description" content="总结自http://blog.csdn.net/woshixuye/article/details/8230407
+Throwable是所有异常的根，java.lang.ThrowableError是错误，java.lang.ErrorException是异常，java.lang.Exception">
 
 
 
@@ -129,13 +132,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-    标签 | 涵月的小站
-  
-</title>
+  <title> Java异常种类 | 涵月的小站 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -166,7 +163,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,16 +263,175 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
-      <div class="tag-cloud">
-        <div class="tag-cloud-title">
-            目前共计 5 个标签
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java异常种类
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-18T15:34:49+08:00" content="2017-08-18">
+              2017-08-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/08/18/Java异常类型种类/" class="leancloud_visitors" data-flag-title="Java异常种类">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
         </div>
-        <div class="tag-cloud-tags">
-          <a href="/tags/TCP-IP/" style="font-size: 12px; color: #ccc">TCP/IP</a> <a href="/tags/创建类模式/" style="font-size: 12px; color: #ccc">创建类模式</a> <a href="/tags/排序/" style="font-size: 12px; color: #ccc">排序</a> <a href="/tags/设计原则/" style="font-size: 12px; color: #ccc">设计原则</a> <a href="/tags/设计模式/" style="font-size: 12px; color: #ccc">设计模式</a>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>总结自<a href="http://blog.csdn.net/woshixuye/article/details/8230407" target="_blank" rel="external">http://blog.csdn.net/woshixuye/article/details/8230407</a></p>
+<p>Throwable是所有异常的根，java.lang.Throwable<br>Error是错误，java.lang.Error<br>Exception是异常，java.lang.Exception<br> <a id="more"></a><br>一、Exception<br>一般分为Checked异常和Runtime异常，</p>
+<ol>
+<li><p>Checked异常<br>只有java语言提供了Checked异常，Java认为Checked异常都是可以被处理的异常，所以Java程序必须显示处理Checked异常。<br>对Checked异常处理方法有两种</p>
+<ul>
+<li>当前方法知道如何处理该异常，则用try…catch块来处理该异常。</li>
+<li>当前方法不知道如何处理，则在定义该方法是声明抛出该异常。</li>
+</ul>
+</li>
+<li><p>RuntimeException<br>Runtime如除数是0和数组下标越界等，其产生频繁，处理麻烦，若显示申明或者捕获将会对程序的可读性和运行效率影响很大。<br>所以由系统自动检测并将它们交给缺省的异常处理程序。当然如果你有处理要求也可以显示捕获它们。</p>
+</li>
+</ol>
+<p>三、Error<br>当程序发生不可控的错误时，通常做法是通知用户并中止程序的执行。与异常不同的是Error及其子类的对象不应被抛出。<br>Error是throwable的子类，代表编译时间和系统错误，用于指示合理的应用程序不应该试图捕获的严重问题。<br>Error由Java虚拟机生成并抛出，包括动态链接失败，虚拟机错误等。程序对其不做处理。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/18/排序sort/" rel="next" title="常用排序：Java实现">
+                <i class="fa fa-chevron-left"></i> 常用排序：Java实现
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
 
@@ -284,6 +440,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -303,8 +463,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -383,6 +552,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -479,6 +659,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
