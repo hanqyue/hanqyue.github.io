@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="设计模式," />
+  <meta name="keywords" content="JVM-Java虚拟机," />
 
 
 
@@ -102,19 +102,16 @@
 
 
 
-<meta name="description" content="前言 之前项目有个模块需要实现被通知的作用，那是第一时间就想到了观察者，那个模块是对象间一对一的依赖关系，因此对当时找到的观察者一对多的例子进行了简化，在简化过程中发现观察者就是把一个对象放到另一处在通知时被调用，整体就是一个反向思考的过程。因此，本文也将有最完整的观察者一步步简化成最基本的调用代码进行讲解，不过在实际使用时，最好用观察者的模式来实现，它也起到了一定的解耦合的作用。">
+<meta name="description" content="《深入理解Java虚拟机》笔记类从被加载到虚拟机内存开始，到卸载出内存为止，他的整个生命周期包括：加载-验证-准备-解析-初始化-使用-卸载 七个阶段，其中验证、准备、解析三个部分统称为链接。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式之观察者">
-<meta property="og:url" content="http://coder-felicia.cn/2017/03/30/设计模式之观察者/index.html">
+<meta property="og:title" content="JVM-Java虚拟机">
+<meta property="og:url" content="http://coder-felicia.cn/2020/03/10/JVM-Java虚拟机/index.html">
 <meta property="og:site_name" content="涵月的小站">
-<meta property="og:description" content="前言 之前项目有个模块需要实现被通知的作用，那是第一时间就想到了观察者，那个模块是对象间一对一的依赖关系，因此对当时找到的观察者一对多的例子进行了简化，在简化过程中发现观察者就是把一个对象放到另一处在通知时被调用，整体就是一个反向思考的过程。因此，本文也将有最完整的观察者一步步简化成最基本的调用代码进行讲解，不过在实际使用时，最好用观察者的模式来实现，它也起到了一定的解耦合的作用。">
-<meta property="og:image" content="http://coder-felicia.cn/images/UMLObserver.png">
-<meta property="og:image" content="http://coder-felicia.cn/images/SimpleObserver.png">
-<meta property="og:updated_time" content="2017-03-30T16:36:14.000Z">
+<meta property="og:description" content="《深入理解Java虚拟机》笔记类从被加载到虚拟机内存开始，到卸载出内存为止，他的整个生命周期包括：加载-验证-准备-解析-初始化-使用-卸载 七个阶段，其中验证、准备、解析三个部分统称为链接。">
+<meta property="og:updated_time" content="2020-03-10T13:30:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式之观察者">
-<meta name="twitter:description" content="前言 之前项目有个模块需要实现被通知的作用，那是第一时间就想到了观察者，那个模块是对象间一对一的依赖关系，因此对当时找到的观察者一对多的例子进行了简化，在简化过程中发现观察者就是把一个对象放到另一处在通知时被调用，整体就是一个反向思考的过程。因此，本文也将有最完整的观察者一步步简化成最基本的调用代码进行讲解，不过在实际使用时，最好用观察者的模式来实现，它也起到了一定的解耦合的作用。">
-<meta name="twitter:image" content="http://coder-felicia.cn/images/UMLObserver.png">
+<meta name="twitter:title" content="JVM-Java虚拟机">
+<meta name="twitter:description" content="《深入理解Java虚拟机》笔记类从被加载到虚拟机内存开始，到卸载出内存为止，他的整个生命周期包括：加载-验证-准备-解析-初始化-使用-卸载 七个阶段，其中验证、准备、解析三个部分统称为链接。">
 
 
 
@@ -132,7 +129,7 @@
   };
 </script>
 
-  <title> 设计模式之观察者 | 涵月的小站 </title>
+  <title> JVM-Java虚拟机 | 涵月的小站 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -282,7 +279,7 @@
             
             
               
-                设计模式之观察者
+                JVM-Java虚拟机
               
             
           </h1>
@@ -294,30 +291,11 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-30T22:56:24+08:00" content="2017-03-30">
-              2017-03-30
+            <time itemprop="dateCreated" datetime="2020-03-10T21:25:23+08:00" content="2020-03-10">
+              2020-03-10
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -328,7 +306,7 @@
 
           
           
-             <span id="/2017/03/30/设计模式之观察者/" class="leancloud_visitors" data-flag-title="设计模式之观察者">
+             <span id="/2020/03/10/JVM-Java虚拟机/" class="leancloud_visitors" data-flag-title="JVM-Java虚拟机">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -350,19 +328,127 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p> 之前项目有个模块需要实现被通知的作用，那是第一时间就想到了观察者，那个模块是对象间一对一的依赖关系，因此对当时找到的观察者一对多的例子进行了简化，在简化过程中发现观察者就是把一个对象放到另一处在通知时被调用，整体就是一个反向思考的过程。因此，本文也将有最完整的观察者一步步简化成最基本的调用代码进行讲解，不过在实际使用时，最好用观察者的模式来实现，它也起到了一定的解耦合的作用。<br><a id="more"></a></p>
-<h3 id="观察者模式定义"><a href="#观察者模式定义" class="headerlink" title="观察者模式定义"></a>观察者模式定义</h3><p> 观察者模式也叫发布订阅模式，对象间一种一对多的依赖关系，使得每当一个对象改变状态，则所有依赖于它的对象都会得到通知并自动更新。<br><img src="/images/UMLObserver.png" alt="“观察者详细类图”">  </p>
-<h3 id="通用例子"><a href="#通用例子" class="headerlink" title="通用例子"></a>通用例子</h3><p>被观察者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public abstract class Subject&#123;</div><div class="line">// Vector是线程同步，ArrayList是线程异步，这里采用Vector</div><div class="line">private Vector&lt;Observer&gt; obsVector = new Vector&lt;Observer&gt;();</div><div class="line"></div><div class="line">public void addObserver(Observer o)&#123;</div><div class="line">    this.obsVector.add(o);</div><div class="line"> &#125;</div><div class="line"></div><div class="line">public void deleteObserver(Observer o)&#123;</div><div class="line">  this.obsVector.remove(o);</div><div class="line"> &#125;</div><div class="line"></div><div class="line">public void <span class="function"><span class="title">notifyObservers</span></span>()&#123;</div><div class="line">  <span class="keyword">for</span>(Observer o:this.obsVector)&#123;</div><div class="line">             o.update();</div><div class="line">    &#125;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>具体被观察者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class ConcreteSubject implements Subject&#123;</div><div class="line">//具体行为</div><div class="line">public void <span class="function"><span class="title">doSomething</span></span>()&#123;</div><div class="line">super.notifyObservers();</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>观察者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Observer&#123;</div><div class="line">public void update();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>具体观察者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class ConcreteObserver implements Observer&#123;</div><div class="line">public void <span class="function"><span class="title">update</span></span>()&#123;</div><div class="line">System.out.println(<span class="string">" 接收到信息，进行更新"</span>);</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>场景类<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class Client&#123;</div><div class="line">  public static void main(String[] args)&#123;</div><div class="line">      ConcreteSubject subject = new ConcreteSubject();</div><div class="line">      Observer obs = new ConcreteObserver();</div><div class="line">      subject.addObserver(obs);</div><div class="line">      subject.doSomething();</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>简到不能再简之后：<br><img src="/images/SimpleObserver.png" alt="“简化后”"><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class ConcreteSubject &#123;</div><div class="line">//具体业务</div><div class="line">public void <span class="keyword">do</span>Something(ConcreteObserver obs)&#123;</div><div class="line">obs.update();</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class ConcreteObserver&#123;</div><div class="line">//更新方法</div><div class="line">public void <span class="function"><span class="title">update</span></span>()&#123;</div><div class="line">System.out.println(<span class="string">" 接收到信息，进行更新"</span>);</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class Client&#123;</div><div class="line">  public static void main(String[] args)&#123;</div><div class="line">    ConcreteSubject subject = new ConcreteSubject();</div><div class="line">    ConcreteObserver obs = new ConcreteObserver();</div><div class="line">    // obs的属性或行为发生变化是由subject导致的，那么就将obs传给subject，这样直接由subject来调用obs的函数，使其更新，从而避免了循环查询。</div><div class="line">    subject.doSomething(obs);</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>因此，观察者也是回调的一种扩展</p>
-<h3 id="观察者的优点"><a href="#观察者的优点" class="headerlink" title="观察者的优点"></a>观察者的优点</h3><p>抽象耦合：观察者和被观察者都非常容易扩展。<br>可用于建立触发机制，但在一个观察者模式中最多出现一个既是观察者又是被观察者的情况。</p>
-<h3 id="观察者的缺点"><a href="#观察者的缺点" class="headerlink" title="观察者的缺点"></a>观察者的缺点</h3><p> 由于java中消息默认顺序执行，在多级触发情况下，需多加考虑其运行效率。</p>
+        <p>《深入理解Java虚拟机》笔记<br>类从被加载到虚拟机内存开始，到卸载出内存为止，他的整个生命周期包括：<br>加载-验证-准备-解析-初始化-使用-卸载 七个阶段，其中验证、准备、解析三个部分统称为链接。<br><a id="more"></a></p>
+<h4 id="第三部分-虚拟机执行子系统"><a href="#第三部分-虚拟机执行子系统" class="headerlink" title="第三部分 虚拟机执行子系统"></a>第三部分 虚拟机执行子系统</h4><h5 id="虚拟机类加载机制"><a href="#虚拟机类加载机制" class="headerlink" title="虚拟机类加载机制"></a>虚拟机类加载机制</h5><p>类从被加载到虚拟机内存开始，到卸载出内存为止，他的整个生命周期包括：<br>加载-验证-准备-解析-初始化-使用-卸载 七个阶段，其中验证、准备、解析三个部分统称为链接。</p>
+<ol>
+<li>加载</li>
+</ol>
+<ul>
+<li>通过一个类的全限定名来获取定义此类的二进制字节流</li>
+<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构</li>
+<li>在内存中生成一个代表这个类的Class对象作为方法区这个类的各种数据的访问入口</li>
+</ul>
+<ol>
+<li>验证</li>
+</ol>
+<ul>
+<li>文件格式验证</li>
+<li>元数据验证</li>
+<li>字节码验证</li>
+<li>符号引用验证</li>
+</ul>
+<ol>
+<li>准备：准备阶段是正式为类变量分配内存并设置类变量初始值阶段</li>
+<li>解析：虚拟机将常量池中的引用替换为直接引用。</li>
+<li>初始化：这是类加载过程的最后一步。前面的加载过程都是虚拟机主导和控制的，到了初始化阶段才真正开始执行类中定义的程序代码（字节码）。</li>
+</ol>
+<hr>
+<h6 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h6><ol>
+<li><p>通过一个类的全限定名来获取描述此类的二进制字节流这一动作是放在虚拟机外部去实现的，实现这一动作的代码模块称为“类加载器”</p>
+</li>
+<li><p>对于任意一个类，都需要由加载他的类加载器和这个类本身一同确立其在虚拟机中的唯一性，每一个类加载器都拥有一个独立的类名称空间。</p>
+</li>
+<li><p>从Java虚拟机的角度来讲，只存在两种不同的类加载器：</p>
+</li>
+</ol>
+<ul>
+<li>启动类加载器：由C++实现，是虚拟机的一部分</li>
+<li>所有其他类加载器：由Java实现，独立于虚拟机外部，全都继承自ClassLoader类。</li>
+</ul>
+<ol>
+<li>从Java开发人员的角度来看，类加载器分为：</li>
+</ol>
+<ul>
+<li>启动类加载器</li>
+<li>扩展类加载器</li>
+<li>应用程序类加载器</li>
+</ul>
+<ol>
+<li>我们的应用程序都是由这三种类加载器互相配合进行加载的，她们之间的关系采用了双亲委派模型。</li>
+<li>双亲委派模型的工作过程是：</li>
+</ol>
+<p>如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都是应该传送到顶层的启动类加载器中，只有当父类加载器反馈自己无法完成这个加载请求（它的搜索范围中没有找到所需的类）时，子加载器才会尝试自己去加载。</p>
+<hr>
+<h5 id="虚拟机字节码执行引擎"><a href="#虚拟机字节码执行引擎" class="headerlink" title="虚拟机字节码执行引擎"></a>虚拟机字节码执行引擎</h5><p>输入的是字节码文件，处理过程是字节码解析的等效过程，输出的是执行结果。</p>
+<h6 id="运行时栈帧"><a href="#运行时栈帧" class="headerlink" title="运行时栈帧"></a>运行时栈帧</h6><ol>
+<li><p>栈帧：支持虚拟机方法调用和执行的数据结构，是虚拟机运行时数据区中的虚拟机栈的栈元素。</p>
+</li>
+<li><p>每一个栈帧都包括了局部变量表、操作数栈、动态链接、方法返回地址和一些额外的附加信息。<br>在编译的时候内存就已经分配好了，不会受到程序运行期变量数据的影响，而仅仅取决于具体的虚拟机实现。</p>
+</li>
+<li><p>一个线程中的方法调用链很长，所以栈里面有很多栈帧，而只有位于栈顶的那个栈帧才是当前有效的，称为当前栈帧。</p>
+</li>
+</ol>
+<h6 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h6><p>方法调用并不等同于方法执行，方法调用阶段唯一的任务就是确定被调用方法的版本，一切方法调用在Class文件中存储的都只是符号引用，而不是方法在实际运行时内存布局中的入口地址。</p>
+<ol>
+<li><p>解析：所有方法调用中的目标方法子Class文件里都是一个常量池中的符号引用，在类加载的解析阶段，会将其中的一部分符号引用转化为直接引用。</p>
+</li>
+<li><p>分派：Java的三个特性：继承、封装、多态，其中在多态特性中的体现–重载和重写，是由分派决定的。分派由静态分派和动态分派。<br>虚拟机在重载时是通过参数的静态类型作为判定依据的，依据静态类型分派的方式称为静态分派，体现在方法重载。<br>而动态分派体现在方法重写，动态分派的方法版本选择过程最常用的优化方法是为类在方法区中建立一个虚方法表，使用虚方法表索引来代替元数据查找以提高性能。</p>
+</li>
+</ol>
+<hr>
+<h4 id="第二章-Java内存区域与内存溢出异常"><a href="#第二章-Java内存区域与内存溢出异常" class="headerlink" title="第二章 Java内存区域与内存溢出异常"></a>第二章 Java内存区域与内存溢出异常</h4><h5 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h5><ul>
+<li>由线程共享:方法区/堆 </li>
+<li>线程隔离区域:本地方法/虚拟机栈 / 程序计数器</li>
+</ul>
+<ol>
+<li>程序计数器是当前线程所执行的字节码的行号指示器</li>
+<li>Java虚拟机栈</li>
+<li>虚拟机栈描述的是Java方法执行的内存模型：每个方法在执行的同时都会创建一个栈帧，用于存储局部变量、操作数栈、动态链接、方法出口等信息</li>
+<li>通常所说的“Java内存分为堆内存和栈内存”是过于粗糙的，其中的栈所指的实际上是虚拟机栈，确切的说是虚拟机栈中的局部变量表</li>
+<li>局部变量表所需的内存空间在编译期间完成分配。</li>
+<li><p>本地方法栈<br>本地方法栈和虚拟机栈的区别在于，虚拟机栈为虚拟机执行Java方法服务，而本地方法栈则为Native方法服务。</p>
+</li>
+<li><p>Java堆</p>
+</li>
+</ol>
+<p>1.Java堆是Java虚拟机所管理的内存中最大的一块<br>2.Java堆在虚拟机启动时创建，被所有线程共享<br>3.Java堆唯一的目的是存放对象实例，几乎所有的对象实例和数组都在这里<br>4.Java堆为了便于更好的回收和分配内存，可以细分为：“新生代和老生代”，或者“Eden\ From Survivor\ To Survivor等”<br>5.Java堆可以处在物理上不连续的内存空间中，只要逻辑上是连续的即可</p>
+<ol>
+<li>方法区</li>
+</ol>
+<p>1.方法区用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据<br>2.如何实现方法区属于虚拟机的实现细节，不受虚拟机规范约束<br>3.方法区可以选择不实现垃圾回收<br>4.方法区的内存回收目标主要针对常量池的回收和对类型的卸载</p>
+<ol>
+<li>其他</li>
+</ol>
+<p>1.运行时常量池用于存放编译器生成的各种字面量和符号引用<br>2.直接内存不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范中定义的内存区域</p>
+<h5 id="OutOfMemoryError异常"><a href="#OutOfMemoryError异常" class="headerlink" title="OutOfMemoryError异常"></a>OutOfMemoryError异常</h5><ol>
+<li>Java堆溢出</li>
+<li>虚拟机和本地方法栈的溢出</li>
+<li>方法区和运行时常量池溢出</li>
+</ol>
+<hr>
+<h4 id="第三章-垃圾收集器与内存分配策略"><a href="#第三章-垃圾收集器与内存分配策略" class="headerlink" title="第三章 垃圾收集器与内存分配策略"></a>第三章 垃圾收集器与内存分配策略</h4><p>4.垃圾收集算法</p>
+<p>4.4.1 标记—清除算法</p>
+<p>算法分为标记和清除两个阶段：首先标记出所有需要回收的对象，在标记完成后统一回收所有被标记的对象、</p>
+<p>不足:一个是效率问题，标记和清除两个过程的效率都不高；另一个是空间问题，标记清楚之后会产生大量不连续的内存碎片，空间碎片太多可能会导致以后再程序运行过程中需要分配较大的对象时，无法找到足够的连续内存而不得不提前触发另一次垃圾收集动作</p>
+<p>4.4.2 复制算法</p>
+<p>他将可用内存按照容量划分为大小相等的两块，每次只使用其中的一块。当这块的内存用完了，就将还存活着的对象复制到另外一块上面，然后再把已使用过的内存空间一次清理掉。这样使得每次都是对整个半区进行内存回收，内存分配时也就不用考虑内存碎片等复杂情况，只要移动堆顶指针，按顺序分配内存即可</p>
+<p>不足：将内存缩小为了原来的一半</p>
+<p>实际中我们并不需要按照1:1比例来划分内存空间，而是将内存分为一块较大的Eden空间和两块较小的Survivor空间，每次使用Eden和其中一块Survivor</p>
+<p>当另一个Survivor空间没有足够空间存放上一次新生代收集下来的存活对象时，这些对象将直接通过分配担保机制进入老年代</p>
+<p>4.4.3 标记整理算法</p>
+<p>让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存</p>
+<p>4.4.4 分代收集算法</p>
+<p>只是根据对象存活周期的不同将内存划分为几块。一般是把java堆分为新生代和老年代，这样就可以根据各个年代的特点采用最适当的收集算法。在新生代中，每次垃圾收集时都发现有大批对象死去，只有少量存活，那就选用复制算法，只需要付出少量存活对象的复制成本就可以完成收集。而老年代中因为对象存活率高、没有额外空间对它进行分配担保，就必须使用标记清理或者标记整理算法来进行回收</p>
+<hr>
+<p>Android打包编译的流程 ：</p>
+<ol>
+<li>AAPT（Android Asset Packaging Tool）工具，Android资源打包工具。会打包资源文件（res文件夹下的文件），并生成R.java和resources.arsc文件。</li>
+<li>AIDL工具会将所有的.aidl文件编译成.java文件。</li>
+<li>JAVAC工具将R.java、AIDL接口生成的java文件、应用代码java文件编译成.class文件。</li>
+<li>dex脚本将很多.class文件转换打包成一个.dex文件。</li>
+<li>apkbuilder脚本将资源文件和.dex文件生成未签名的.apk文件。</li>
+<li>jarsigner对apk进行签名。</li>
+</ol>
 
       
     </div>
@@ -384,7 +470,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag">#设计模式</a>
+            <a href="/tags/JVM-Java虚拟机/" rel="tag">#JVM-Java虚拟机</a>
           
         </div>
       
@@ -393,12 +479,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/03/10/泛型擦除/" rel="next" title="泛型擦除">
+                <i class="fa fa-chevron-left"></i> 泛型擦除
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/19/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/10/Android-UI：绘制、布局和触摸反馈/" rel="prev" title="Android UI：绘制、布局和触摸反馈">
+                Android UI：绘制、布局和触摸反馈 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -565,7 +655,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#观察者模式定义"><span class="nav-number">1.1.</span> <span class="nav-text">观察者模式定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用例子"><span class="nav-number">1.2.</span> <span class="nav-text">通用例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#观察者的优点"><span class="nav-number">1.3.</span> <span class="nav-text">观察者的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#观察者的缺点"><span class="nav-number">1.4.</span> <span class="nav-text">观察者的缺点</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第三部分-虚拟机执行子系统"><span class="nav-number">1.</span> <span class="nav-text">第三部分 虚拟机执行子系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#虚拟机类加载机制"><span class="nav-number">1.1.</span> <span class="nav-text">虚拟机类加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#类加载器"><span class="nav-number">1.1.1.</span> <span class="nav-text">类加载器</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#虚拟机字节码执行引擎"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机字节码执行引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#运行时栈帧"><span class="nav-number">1.2.1.</span> <span class="nav-text">运行时栈帧</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#方法调用"><span class="nav-number">1.2.2.</span> <span class="nav-text">方法调用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二章-Java内存区域与内存溢出异常"><span class="nav-number">2.</span> <span class="nav-text">第二章 Java内存区域与内存溢出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">2.1.</span> <span class="nav-text">运行时数据区域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#OutOfMemoryError异常"><span class="nav-number">2.2.</span> <span class="nav-text">OutOfMemoryError异常</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三章-垃圾收集器与内存分配策略"><span class="nav-number">3.</span> <span class="nav-text">第三章 垃圾收集器与内存分配策略</span></a></li></ol></div>
             
           </div>
         </section>

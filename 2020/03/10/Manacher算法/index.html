@@ -86,7 +86,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="每日一题," />
 
 
 
@@ -102,15 +102,16 @@
 
 
 
-<meta name="description" content="关注本质，解其源型">
-<meta property="og:type" content="website">
-<meta property="og:title" content="涵月的小站">
-<meta property="og:url" content="http://coder-felicia.cn/tags/创建类模式/index.html">
+<meta name="description" content="每日一题：字符串str中，最长回文子串的长度如何求解? 如何做到时间复杂度O(N)完成?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Manacher算法">
+<meta property="og:url" content="http://coder-felicia.cn/2020/03/10/Manacher算法/index.html">
 <meta property="og:site_name" content="涵月的小站">
-<meta property="og:description" content="关注本质，解其源型">
+<meta property="og:description" content="每日一题：字符串str中，最长回文子串的长度如何求解? 如何做到时间复杂度O(N)完成?">
+<meta property="og:updated_time" content="2020-03-10T13:05:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="涵月的小站">
-<meta name="twitter:description" content="关注本质，解其源型">
+<meta name="twitter:title" content="Manacher算法">
+<meta name="twitter:description" content="每日一题：字符串str中，最长回文子串的长度如何求解? 如何做到时间复杂度O(N)完成?">
 
 
 
@@ -128,7 +129,7 @@
   };
 </script>
 
-  <title> 标签: 创建类模式 | 涵月的小站 </title>
+  <title> Manacher算法 | 涵月的小站 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -159,7 +160,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,46 +258,203 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        创建类模式
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Manacher算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-10T20:55:26+08:00" content="2020-03-10">
+              2020-03-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2020/03/10/Manacher算法/" class="leancloud_visitors" data-flag-title="Manacher算法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>每日一题：<br>字符串str中，最长回文子串的长度如何求解? 如何做到时间复杂度O(N)完成?<br><a id="more"></a></p>
+<pre><code class="Java"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_Manacher</span> </span>{
 
-      <h1 class="post-title">
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">char</span>[] manacherString(String str) {
+     <span class="keyword">char</span>[] charArr = str.toCharArray();
+     <span class="keyword">char</span>[] res = <span class="keyword">new</span> <span class="keyword">char</span>[str.length() * <span class="number">2</span> + <span class="number">1</span>];
+     <span class="keyword">int</span> index = <span class="number">0</span>;
+     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != res.length; i++) {
+        res[i] = (i &amp; <span class="number">1</span>) == <span class="number">0</span> ? <span class="string">'#'</span> : charArr[index++];
+     }
+     <span class="keyword">return</span> res;
+  }
+
+  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxLcpsLength</span><span class="params">(String s)</span> </span>{
+     <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) {
+        <span class="keyword">return</span> <span class="number">0</span>;
+     }
+     <span class="keyword">char</span>[] str = manacherString(s); <span class="comment">// 1221 -&gt;  #1#2#2#1#</span>
+     <span class="keyword">int</span>[] pArr = <span class="keyword">new</span> <span class="keyword">int</span>[str.length]; <span class="comment">// 回文半径数组</span>
+     <span class="keyword">int</span> C = -<span class="number">1</span>;
+     <span class="keyword">int</span> R = -<span class="number">1</span>; 
+     <span class="keyword">int</span> max = Integer.MIN_VALUE; 
+     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != str.length; i++) { <span class="comment">// 每一个位置都求回文半径</span>
+     <span class="comment">// i至少的回文区域，先给pArr[i]</span>
+        pArr[i] = R &gt; i ? Math.min(pArr[<span class="number">2</span> * C - i], R - i) : <span class="number">1</span>;
+        <span class="keyword">while</span> (i + pArr[i] &lt; str.length &amp;&amp; i - pArr[i] &gt; -<span class="number">1</span>) {
+           <span class="keyword">if</span> (str[i + pArr[i]] == str[i - pArr[i]])
+              pArr[i]++;
+           <span class="keyword">else</span> 
+              <span class="keyword">break</span>;
+        }
+        <span class="keyword">if</span> (i + pArr[i] &gt; R) {
+           R = i + pArr[i];
+           C = i;
+        }
+        max = Math.max(max, pArr[i]);
+     }
+     <span class="keyword">return</span> max - <span class="number">1</span>;
+  }
+
+  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+     String str1 = <span class="string">"abc1234321ab"</span>;
+     System.out.println(maxLcpsLength(str1));
+  }
+
+}
+</code></pre>
+
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/08/18/创建类模式笔记/" itemprop="url">
-              
-                <span itemprop="name">设计模式之创建类模式笔记</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-18T15:34:49+08:00"
-              content="2017-08-18" >
-          08-18
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/每日一题/" rel="tag">#每日一题</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/10/KMP算法/" rel="next" title="KMP算法">
+                <i class="fa fa-chevron-left"></i> KMP算法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/10/Kotlin系列之let、with、run、apply、also函数/" rel="prev" title="Kotlin系列之let、with、run、apply、also函数">
+                Kotlin系列之let、with、run、apply、also函数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -304,6 +462,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -323,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -403,6 +574,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -499,6 +681,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
