@@ -281,6 +281,187 @@
             
               
                 
+                <a class="post-title-link" href="/2020/03/12/判断一个链表是否为回文结构/" itemprop="url">
+                  判断一个链表是否为回文结构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-12T08:05:04+08:00" content="2020-03-12">
+              2020-03-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2020/03/12/判断一个链表是否为回文结构/" class="leancloud_visitors" data-flag-title="判断一个链表是否为回文结构">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>判断一个链表是否为回文结构<br>【题目】给定一个单链表的头节点head，请判断该链表是否为回文结构。<br>【例子】1-&gt;2-&gt;1，返回true; 1-&gt;2-&gt;2-&gt;1，返回true;15-&gt;6-&gt;15，返回true; 1-&gt;2-&gt;3，返回false。<br>【例子】如果链表长度为N，时间复杂度达到O(N)，额外空间复杂度达到O(1)。</p>
+<pre><code class="Java"><span class="keyword">import</span> java.util.Stack;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_IsPalindromeList</span> </span>{
+
+  <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>{
+     <span class="keyword">public</span> <span class="keyword">int</span> value;
+     <span class="keyword">public</span> Node next;
+
+     <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data)</span> </span>{
+       <span class="keyword">this</span>.value = data;
+     }
+  }
+
+  <span class="comment">//需要O（1）额外空间</span>
+  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(Node head)</span> </span>{
+    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) {
+       <span class="keyword">return</span> <span class="keyword">true</span>;
+    }
+    Node n1 = head;
+    Node n2 = head;
+    <span class="keyword">while</span> (n2.next != <span class="keyword">null</span> &amp;&amp; n2.next.next != <span class="keyword">null</span>) { <span class="comment">// 查找中间节点</span>
+       n1 = n1.next; <span class="comment">// n1 -&gt; mid</span>
+       n2 = n2.next.next; <span class="comment">// n2 -&gt; end</span>
+    }
+    n2 = n1.next; <span class="comment">// n2 -&gt; 右部分第一个节点</span>
+    n1.next = <span class="keyword">null</span>; <span class="comment">// mid.next -&gt; null</span>
+    Node n3 = <span class="keyword">null</span>;
+    <span class="keyword">while</span> (n2 != <span class="keyword">null</span>) { <span class="comment">// 右半部分转换</span>
+       n3 = n2.next; <span class="comment">// n3 -&gt; 保存下一个节点</span>
+       n2.next = n1; <span class="comment">// 下一个右节点转换</span>
+       n1 = n2; 
+       n2 = n3; 
+    }
+    n3 = n1; <span class="comment">// n3 -&gt;保存最后一个节点</span>
+    n2 = head;<span class="comment">// n2 -&gt;左第一个节点</span>
+    <span class="keyword">boolean</span> res = <span class="keyword">true</span>;
+    <span class="keyword">while</span> (n1 != <span class="keyword">null</span> &amp;&amp; n2 != <span class="keyword">null</span>) { <span class="comment">// 检查回文</span>
+       <span class="keyword">if</span> (n1.value != n2.value) {
+         res = <span class="keyword">false</span>;
+         <span class="keyword">break</span>;
+       }
+    n1 = n1.next; <span class="comment">// 从左到中</span>
+    n2 = n2.next; <span class="comment">// 从右到中</span>
+    }
+    n1 = n3.next;
+    n3.next = <span class="keyword">null</span>;
+    <span class="keyword">while</span> (n1 != <span class="keyword">null</span>) { <span class="comment">// 恢复列表</span>
+        n2 = n1.next;
+       n1.next = n3;
+       n3 = n1;
+       n1 = n2;
+    }
+    <span class="keyword">return</span> res;
+ }
+
+ <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLinkedList</span><span class="params">(Node node)</span> </span>{
+    System.out.print(<span class="string">"Linked List: "</span>);
+    <span class="keyword">while</span> (node != <span class="keyword">null</span>) {
+        System.out.print(node.value + <span class="string">" "</span>);
+        node = node.next;
+    }
+    System.out.println();
+ }
+
+ <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+    Node head = <span class="keyword">new</span> Node(<span class="number">1</span>);
+    head.next = <span class="keyword">new</span> Node(<span class="number">2</span>);
+    head.next.next = <span class="keyword">new</span> Node(<span class="number">3</span>);
+    head.next.next.next = <span class="keyword">new</span> Node(<span class="number">2</span>);
+    head.next.next.next.next = <span class="keyword">new</span> Node(<span class="number">1</span>);
+    printLinkedList(head);
+    System.out.println(isPalindrome(head) + <span class="string">" "</span>);
+    printLinkedList(head);
+
+ }
+
+}
+</code></pre>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2020/03/10/Android-UI：绘制、布局和触摸反馈/" itemprop="url">
                   Android UI：绘制、布局和触摸反馈
                 </a>
@@ -1264,131 +1445,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/21/六大设计原则/" itemprop="url">
-                  六大设计原则
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-21T09:17:19+08:00" content="2017-04-21">
-              2017-04-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/04/21/六大设计原则/" class="leancloud_visitors" data-flag-title="六大设计原则">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="http://upload-images.jianshu.io/upload_images/1786597-9f5b86230d5857f7.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="静心"></p>
-<h4 id="1-单一职责原则：应该有且仅有一个原因引起类的变更。"><a href="#1-单一职责原则：应该有且仅有一个原因引起类的变更。" class="headerlink" title="1.单一职责原则：应该有且仅有一个原因引起类的变更。"></a>1.单一职责原则：应该有且仅有一个原因引起类的变更。</h4><p>适用于接口、类，同时也适用于方法。<br>   好处：<br>● 类的复杂性降低，实现什么职责都有清晰明确的定义；<br>● 可读性提高；<br>● 可维护性提高；<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/04/21/六大设计原则/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1434,7 +1490,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
