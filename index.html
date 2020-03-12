@@ -333,88 +333,12 @@
 
       
         
-          
-            <p>判断一个链表是否为回文结构<br>【题目】给定一个单链表的头节点head，请判断该链表是否为回文结构。<br>【例子】1-&gt;2-&gt;1，返回true; 1-&gt;2-&gt;2-&gt;1，返回true;15-&gt;6-&gt;15，返回true; 1-&gt;2-&gt;3，返回false。<br>【例子】如果链表长度为N，时间复杂度达到O(N)，额外空间复杂度达到O(1)。</p>
-<pre><code class="Java"><span class="keyword">import</span> java.util.Stack;
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code_IsPalindromeList</span> </span>{
-
-  <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>{
-     <span class="keyword">public</span> <span class="keyword">int</span> value;
-     <span class="keyword">public</span> Node next;
-
-     <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> data)</span> </span>{
-       <span class="keyword">this</span>.value = data;
-     }
-  }
-
-  <span class="comment">//需要O（1）额外空间</span>
-  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span><span class="params">(Node head)</span> </span>{
-    <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) {
-       <span class="keyword">return</span> <span class="keyword">true</span>;
-    }
-    Node n1 = head;
-    Node n2 = head;
-    <span class="keyword">while</span> (n2.next != <span class="keyword">null</span> &amp;&amp; n2.next.next != <span class="keyword">null</span>) { <span class="comment">// 查找中间节点</span>
-       n1 = n1.next; <span class="comment">// n1 -&gt; mid</span>
-       n2 = n2.next.next; <span class="comment">// n2 -&gt; end</span>
-    }
-    n2 = n1.next; <span class="comment">// n2 -&gt; 右部分第一个节点</span>
-    n1.next = <span class="keyword">null</span>; <span class="comment">// mid.next -&gt; null</span>
-    Node n3 = <span class="keyword">null</span>;
-    <span class="keyword">while</span> (n2 != <span class="keyword">null</span>) { <span class="comment">// 右半部分转换</span>
-       n3 = n2.next; <span class="comment">// n3 -&gt; 保存下一个节点</span>
-       n2.next = n1; <span class="comment">// 下一个右节点转换</span>
-       n1 = n2; 
-       n2 = n3; 
-    }
-    n3 = n1; <span class="comment">// n3 -&gt;保存最后一个节点</span>
-    n2 = head;<span class="comment">// n2 -&gt;左第一个节点</span>
-    <span class="keyword">boolean</span> res = <span class="keyword">true</span>;
-    <span class="keyword">while</span> (n1 != <span class="keyword">null</span> &amp;&amp; n2 != <span class="keyword">null</span>) { <span class="comment">// 检查回文</span>
-       <span class="keyword">if</span> (n1.value != n2.value) {
-         res = <span class="keyword">false</span>;
-         <span class="keyword">break</span>;
-       }
-    n1 = n1.next; <span class="comment">// 从左到中</span>
-    n2 = n2.next; <span class="comment">// 从右到中</span>
-    }
-    n1 = n3.next;
-    n3.next = <span class="keyword">null</span>;
-    <span class="keyword">while</span> (n1 != <span class="keyword">null</span>) { <span class="comment">// 恢复列表</span>
-        n2 = n1.next;
-       n1.next = n3;
-       n3 = n1;
-       n1 = n2;
-    }
-    <span class="keyword">return</span> res;
- }
-
- <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printLinkedList</span><span class="params">(Node node)</span> </span>{
-    System.out.print(<span class="string">"Linked List: "</span>);
-    <span class="keyword">while</span> (node != <span class="keyword">null</span>) {
-        System.out.print(node.value + <span class="string">" "</span>);
-        node = node.next;
-    }
-    System.out.println();
- }
-
- <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
-    Node head = <span class="keyword">new</span> Node(<span class="number">1</span>);
-    head.next = <span class="keyword">new</span> Node(<span class="number">2</span>);
-    head.next.next = <span class="keyword">new</span> Node(<span class="number">3</span>);
-    head.next.next.next = <span class="keyword">new</span> Node(<span class="number">2</span>);
-    head.next.next.next.next = <span class="keyword">new</span> Node(<span class="number">1</span>);
-    printLinkedList(head);
-    System.out.println(isPalindrome(head) + <span class="string">" "</span>);
-    printLinkedList(head);
-
- }
-
-}
-</code></pre>
-
-          
+          <p>判断一个链表是否为回文结构<br>【题目】给定一个单链表的头节点head，请判断该链表是否为回文结构。<br>【例子】1-&gt;2-&gt;1，返回true; 1-&gt;2-&gt;2-&gt;1，返回true;15-&gt;6-&gt;15，返回true; 1-&gt;2-&gt;3，返回false。<br>【例子】如果链表长度为N，时间复杂度达到O(N)，额外空间复杂度达到O(1)。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2020/03/12/判断一个链表是否为回文结构/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1217,130 +1141,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/08/18/排序sort/" itemprop="url">
-                  常用排序：Java实现
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-18T15:34:49+08:00" content="2017-08-18">
-              2017-08-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构与算法</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/08/18/排序sort/" class="leancloud_visitors" data-flag-title="常用排序：Java实现">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="http://upload-images.jianshu.io/upload_images/1786597-4e58e121a77a6a3b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="日常配图，晚安😴"><br>排序总结：冒泡排序 归并排序 快排 直接插入排序 选择排序 二分查找 堆排（笔记仅有代码实现）<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/08/18/排序sort/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/08/18/创建类模式笔记/" itemprop="url">
                   设计模式之创建类模式笔记
                 </a>
@@ -1416,6 +1216,130 @@
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>创建类模式包括<strong>工厂方法模式</strong>、<strong>建造者模式</strong>、<strong>抽象工厂模式</strong>、<strong>单例模式</strong>和<strong>原型模式</strong>，提供对象的创建和管理职责。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/08/18/创建类模式笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/18/排序sort/" itemprop="url">
+                  常用排序：Java实现
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-18T15:34:49+08:00" content="2017-08-18">
+              2017-08-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/08/18/排序sort/" class="leancloud_visitors" data-flag-title="常用排序：Java实现">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="http://upload-images.jianshu.io/upload_images/1786597-4e58e121a77a6a3b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="日常配图，晚安😴"><br>排序总结：冒泡排序 归并排序 快排 直接插入排序 选择排序 二分查找 堆排（笔记仅有代码实现）<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/08/18/排序sort/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
