@@ -110,7 +110,7 @@
 <meta property="og:description" content="总结自胡凯的博客，基于Android官方课程的总结，较为全面。">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1786597-e1a712411f779476.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1786597-f25a71f0e4645f1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2020-03-21T18:04:33.000Z">
+<meta property="og:updated_time" content="2020-03-21T18:09:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="“性能优化系列总结”">
 <meta name="twitter:description" content="总结自胡凯的博客，基于Android官方课程的总结，较为全面。">
@@ -467,8 +467,9 @@
 </ul>
 <hr>
 <p>注：渲染操作通常依赖于两个核心组件：CPU与GPU。<br>CPU负责包括Measure，Layout，Record，Execute的计算操作，GPU负责Rasterization(栅格化)操作。CPU通常存在的问题的原因是存在非必需的视图组件，它不仅仅会带来重复的计算操作，而且还会占用额外的GPU资源。</p>
-<p>Resterization栅格化是绘制那些Button，Shape，Path，String，Bitmap等组件最基础的操作。它把那些组件拆分到不同的像素上进行显示。这是一个很费时的操作，GPU的引入就是为了加快栅格化的操作。</p>
-<h2 id="CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。"><a href="#CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。" class="headerlink" title="CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。"></a>CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。</h2><p><strong>11. Android内存优化之OOM</strong><br><a href="http://hukai.me/android-performance-oom/" target="_blank" rel="external">http://hukai.me/android-performance-oom/</a></p>
+<p>Resterization栅格化是绘制那些Button，Shape，Path，String，Bitmap等组件最基础的操作。它把那些组件拆分到不同的像素上进行显示。这是一个很费时的操作，GPU的引入就是为了加快栅格化的操作。<br>CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。</p>
+<hr>
+<p><strong>11. Android内存优化之OOM</strong><br><a href="http://hukai.me/android-performance-oom/" target="_blank" rel="external">http://hukai.me/android-performance-oom/</a></p>
 <p>一、内存溢出 out of memory：</p>
 <ol>
 <li>减小对象的内存占用</li>
@@ -715,7 +716,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#总结自胡凯的博客，基于Android官方课程的总结，较为全面。"><span class="nav-number">1.</span> <span class="nav-text">总结自胡凯的博客，基于Android官方课程的总结，较为全面。</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。"><span class="nav-number"></span> <span class="nav-text">CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#总结自胡凯的博客，基于Android官方课程的总结，较为全面。"><span class="nav-number">1.</span> <span class="nav-text">总结自胡凯的博客，基于Android官方课程的总结，较为全面。</span></a></li></ol></div>
             
           </div>
         </section>
