@@ -1,0 +1,966 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="性能优化," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="总结自胡凯的博客，基于Android官方课程的总结，较为全面。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="“性能优化系列总结”">
+<meta property="og:url" content="http://coder-felicia.cn/2020/03/22/“性能优化系列总结”/index.html">
+<meta property="og:site_name" content="涵月的小站">
+<meta property="og:description" content="总结自胡凯的博客，基于Android官方课程的总结，较为全面。">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1786597-e1a712411f779476.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1786597-f25a71f0e4645f1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2020-03-21T18:04:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="“性能优化系列总结”">
+<meta name="twitter:description" content="总结自胡凯的博客，基于Android官方课程的总结，较为全面。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1786597-e1a712411f779476.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> “性能优化系列总结” | 涵月的小站 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?d949f56abb36d144e49c4e2f321b289a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">涵月的小站</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/About" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                “性能优化系列总结”
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-22T01:55:16+08:00" content="2020-03-22">
+              2020-03-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2020/03/22/“性能优化系列总结”/" class="leancloud_visitors" data-flag-title="“性能优化系列总结”">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="总结自胡凯的博客，基于Android官方课程的总结，较为全面。"><a href="#总结自胡凯的博客，基于Android官方课程的总结，较为全面。" class="headerlink" title="总结自胡凯的博客，基于Android官方课程的总结，较为全面。"></a>总结自胡凯的博客，基于Android官方课程的总结，较为全面。</h5><a id="more"></a>
+<p><strong>1. Android性能优化典范 - 第1季</strong><br><a href="http://hukai.me/android-performance-patterns/" target="_blank" rel="external">http://hukai.me/android-performance-patterns/</a></p>
+<ul>
+<li>如何通过工具来找出性能问题以及提升性能的建议。主要从三个方面展开，Android的渲染机制，内存与GC，电量优化。</li>
+<li>Android系统每隔16ms发出VSYNC信号，触发对UI进行渲染，如果每次渲染都成功，这样就能够达到流畅的画面所需要的60fps。</li>
+<li>工具：比如使用开发者选项里GPU绘制，GPU渲染等选项进行观察Activity中的布局是否过于复杂。<br>AS里可以使用TraceView来观察CPU的执行情况。使用Memory Monitor查看到是否发生了内存抖动。使用Allocation Tracker查看在短时间内，同一个栈中不断进出的相同对象。这是内存抖动的典型信号之一。使用Heap Tool获取一份当前状态的内存快照与空白activity进行对比。</li>
+<li>解决：避免在for循环里分配对象，自定义View避免在onDraw方法里面执行复杂的操作，避免创建对象。对于无法避免需要创建对象的情况，考虑对象池模型，通过对象池来解决频繁创建与销毁的问题。</li>
+</ul>
+<p>Refresh Rate：代表了屏幕在一秒内刷新屏幕的次数，这取决于硬件的固定参数，例如60Hz。<br>Frame Rate：代表了GPU在一秒内绘制操作的帧数，例如30fps，60fps。<br>从API 14 (3.0)起。硬件加速默认开启。硬件加速Canvas 的有些方法在一些设备会失效或无法正常工作，具体参考表格：<br><a href="https://hencoder.com/ui-1-8/" target="_blank" rel="external">https://hencoder.com/ui-1-8/</a><br><img src="https://upload-images.jianshu.io/upload_images/1786597-e1a712411f779476.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="硬件加速原理"><br>绘制 View Layer：只有你在对 translationX translationY rotation alpha 等无需调用 invalidate() 的属性做动画的时候，这种方法才适用，因为这种方法本身利用的就是当界面不发生时，缓存未更新所带来的时间的节省。<br>设置了 View Layer 后，View 在每次绘制时需要进行两次的绘制工作（一次绘制到 Layer，一次从 Layer 绘制到显示屏），所以其实它的每次绘制的效率是被降低了的。<br><img src="https://upload-images.jianshu.io/upload_images/1786597-f25a71f0e4645f1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="硬件加速总结"></p>
+<p>导致GC频繁执行有两个原因：</p>
+<ul>
+<li>Memory Churn内存抖动，内存抖动是因为大量的对象被创建又在短时间内马上被释放。</li>
+<li>瞬间产生大量的对象会严重占用Young Generation的内存区域，当达到阀值，剩余空间不够的时候，也会触发GC。即使每次分配的对象占用了很少的内存，但是他们叠加在一起会增加Heap的压力，从而触发更多其他类型的GC。这个操作有可能会影响到帧率，并使得用户感知到性能问题。</li>
+</ul>
+<p><strong>2. Android性能优化之渲染篇：</strong><br>卡顿等性能问题的最主要根源都是因为渲染性能。<br><a href="http://hukai.me/android-performance-render/" target="_blank" rel="external">http://hukai.me/android-performance-render/</a></p>
+<ul>
+<li>扁平绘制布局：约束布局（ConstraintLayout）</li>
+<li>自定义View可以通过canvas.clipRect()来帮助系统识别那些可见的区域。这个方法可以指定一块矩形区域，只有在这个区域内才会被绘制，其他的区域会被忽视。</li>
+</ul>
+<p><strong>3. Android性能优化之运算篇：</strong><br><a href="http://hukai.me/android-performance-compute/" target="_blank" rel="external">http://hukai.me/android-performance-compute/</a></p>
+<ul>
+<li>排序算法等</li>
+<li>多线程操作</li>
+</ul>
+<p><strong>4. Android性能优化之内存篇：</strong><br><a href="http://hukai.me/android-performance-memory/" target="_blank" rel="external">http://hukai.me/android-performance-memory/</a></p>
+<ul>
+<li>避免内存泄漏</li>
+<li>避免内存抖动（短时间创建大量对象，导致频繁GC）</li>
+</ul>
+<p><strong>5. Android性能优化之电量篇：</strong><br><a href="http://hukai.me/android-performance-battery/" target="_blank" rel="external">http://hukai.me/android-performance-battery/</a></p>
+<p><strong>6. Android性能优化典范 - 第2季</strong><br><a href="http://hukai.me/android-performance-patterns-season-2/" target="_blank" rel="external">http://hukai.me/android-performance-patterns-season-2/</a><br>Google发布的Android性能优化典范第2季的课程，内容大致有：电量优化，网络优化，Wear上如何做优化，使用对象池来提高效率，LRU Cache，Bitmap的缩放，缓存，重用，PNG压缩，自定义View的性能，提升设置alpha之后View的渲染性能，以及Lint，StictMode等等工具的使用技巧。</p>
+<ul>
+<li>电量优化，网络优化：可以有针对性的把请求行为捆绑起来，延迟到某个时刻统一发起请求，甚至请求的任务延迟到手机网络切换到WiFi，手机处于充电状态下再执行。</li>
+<li>尽量减少每次重绘的元素可以极大的提升性能，假如某个钟表界面上有很多需要显示的复杂组件，我们可以把这些组件做拆分处理，例如把背景图片单独拎出来设置为一个独立的View，通过setLayerType()方法使得这个View强制用Hardware来进行渲染。大多数应用中的动画，使用PropertyAnimation或者ViewAnimation来操作实现。</li>
+<li>使用JobScheduler来延迟批量处理任务，假设Phone收到来自Wear的任务是每隔5分钟检查一次天气情况，那么Phone使用JobScheduler执行检查天气任务之后，先判断这次返回的结果和之前是否有差异，仅仅当天气发生变化的时候，才有必要把结果通知到Wear，或者仅仅把变化的某一项数据通知给Wear，这样可以更大程度上减少Wear的电量消耗。</li>
+<li>使用对象池技术，避免内存抖动。当使用某个对象的时候先去对象池查询是否存在，如果不存在则创建并加入对象池，也可以预分配即在程序刚启动时就事先为对象池填充即将要使用到的数据。使用对象池坏处，需要手动管理这些对象的分配与释放，需要保证加入对象池的对象和其他外部对象没有互相引用的关系，避免发生对象的内存泄漏。</li>
+<li>图像缓存：LRUCache需注意被淘汰对象的回收，否则会引起严重的内存泄露。</li>
+<li>Lint工具：点击AS的工具栏Analysis -&gt; Inspect Code，触发之后，Lint会开始工作，并把结果输出到底部的工具栏，我们可以逐个查看原因并根据指示做相应的优化修改。</li>
+<li>对于不透明的View，只渲染一次，如果设置了alpha值，会至少需要渲染两次。原因是包含alpha的view需要事先知道混合View的下一层元素是什么，然后再结合上层的View进行Blend混色处理。可使用GPU处理。<br>如何才能够让GPU来渲染某个View呢？可以通过setLayerType的方法来指定View应该如何进行渲染，从SDK 16开始，我们还可以使用ViewPropertyAnimator.alpha().withLayer()来指定。</li>
+<li>避免在onDraw()方法里面执行导致内存分配的操作。</li>
+<li>优化自定义View的性能：</li>
+</ul>
+<ol>
+<li>在View的内容发生改变的时候才去触发invalidate方法，使用ClipRect等方法来提高绘制的性能。</li>
+<li>减少绘制时不必要的绘制元素，对于那些不可见的元素，我们需要尽量避免重绘。</li>
+<li>对于不在屏幕上的元素，可以使用Canvas.quickReject把他们给剔除，避免浪费CPU资源，尽量使用GPU来进行UI的渲染。</li>
+</ol>
+<ul>
+<li>XML优化：ViewStub(延迟化加载)，include(引入布局)，merge(直接衔接子UI元素)</li>
+<li>执行延迟任务方式：</li>
+</ul>
+<ol>
+<li>AlarmManager设置定时任务，可以选择精确的间隔时间，也可以选择非精确时间作为参数。<br><a href="http://www.appgole.com/archives/2019060922583477293" target="_blank" rel="external">http://www.appgole.com/archives/2019060922583477293</a></li>
+<li>使用SyncAdapter为应用添加设置账户，这样在手机设置的账户列表里面可以找到我们的应用。</li>
+<li>JobSchedulor（推荐）：设置任务延迟的间隔，执行条件，还可以增加重试机制。<a href="http://www.appgole.com/archives/2019060922583418205" target="_blank" rel="external">http://www.appgole.com/archives/2019060922583418205</a></li>
+</ol>
+<ul>
+<li>图像内存优化：相比起JPEG，PNG能够提供更加清晰无损的图片，但PNG格式的图片会更大，占用更多的磁盘空间。Webp，它是由Google推出的一种既保留png格式的优点，又能够减少图片大小的一种新型图片格式。开源库Gilde</li>
+</ul>
+<ol>
+<li>bitmap缩放的API，叫做createScaledBitmap()，但原图片会事先加载到内存中，如果原图片过大，很可能导致OOM。</li>
+<li>inSampleSize能够等比的缩放显示图片，同时还避免了需要先把原图加载进内存的缺点。</li>
+<li>使用inScaled，inDensity，inTargetDensity的属性来对解码图片做处理。</li>
+<li>使用inJustDecodeBounds属性解码图片，可以事先获取到图片的大小而不占用内存。</li>
+<li>使用inBitmap属性可以告知新解码的bitmap会尝试去使用之前那张bitmap在heap中所占据的内存区域。注意旧bitmap解码格式和所占内存区域大小。<br>创建一个包含多种典型可重用bitmap的对象池，这样后续的bitmap创建都能够找到合适的“模板”去进行重用。</li>
+</ol>
+<p><strong>7. Android性能优化典范 - 第3季</strong><br><a href="http://hukai.me/android-performance-patterns-season-3/" target="_blank" rel="external">http://hukai.me/android-performance-patterns-season-3/</a><br>更高效的ArrayMap容器，使用Android系统提供的特殊容器来避免自动装箱，避免使用枚举类型，注意onLowMemory与onTrimMemory的回调，避免内存泄漏，高效的位置更新操作，重复layout操作的性能影响，以及使用Batching，Prefetching优化网络请求，压缩传输数据等等使用技巧。</p>
+<ul>
+<li><p>ArrayMap：ArrayMap会计算输入key转换过后的hash值，然后对hash数组使用二分查找法寻找到对应的index，然后可以通过这个index在另外一个数组中直接访问到需要的键值对。如果在第二个数组键值对中的key和前面输入的查询key不一致，那么就认为是发生了碰撞冲突。然后以该key为中心点，分别上下展开，逐个去对比查找，直到找到匹配的值。<br>为避免HashMap的自动装箱，提供了SparseBoolMap，SparseIntMap，SparseLongMap，LongSparseMap等容器，需要注意的和ArrayMap一样。<br>注意：1.对象个数的数量级最好是千以内<br>2.数据组织形式包含Map结构 </p>
+</li>
+<li><p>Android官方强烈建议不要在Android程序里面使用到enum。</p>
+</li>
+<li>当background应用都被kill掉的时候，forground应用会收到onLowMemory()的回调。</li>
+<li>View会保持Activity的引用，Activity同时还和其他内部对象也有可能保持引用关系。当屏幕发生旋转的时候，activity很容易发生泄漏，这样的话，里面的view也会发生泄漏。</li>
+</ul>
+<ol>
+<li>避免使用异步回调</li>
+<li>避免使用Static对象</li>
+<li>避免把View添加到没有清除机制的容器里面</li>
+</ol>
+<ul>
+<li>保持布局层级浅，这样即使发生重复layout，也不会因为布局的层级深而增大了重复layout的倍数。避免调用requestLayout()的方法，一旦调用了requestLayout，会导致该layout的所有父节点都会重新layout。</li>
+<li>网络优化：</li>
+</ul>
+<ol>
+<li>减少移动网络被激活的时间与次数</li>
+<li>使用回退机制来避免固定频繁的同步请求，例如，在发现返回数据相同的情况下，推迟下次的请求时间</li>
+<li>Batching(批处理)的方式来集中发出请求，避免频繁的间隔请求</li>
+<li>使用Prefetching(预取)的技术提前把一些数据拿到，避免后面频繁再次发起网络请求</li>
+</ol>
+<p><strong>8. Android性能优化典范 - 第4季</strong><br><a href="http://hukai.me/android-performance-patterns-season-4/" target="_blank" rel="external">http://hukai.me/android-performance-patterns-season-4/</a><br>内容大致有：优化网络请求的行为，优化安装包的资源文件，优化数据传输的效率，性能优化的几大基础原理等等。</p>
+<ul>
+<li>使用Android Studio里面的Network Traffic Tools来查看网络数据的请求与返回情况</li>
+<li>根据网络好坏情况作为一次加载数据量的划分依据；根据数据量是否有变化调整获取数据的间隔时间；尽量避免轮询；减小网络传输的数据量，对数据做压缩的处理；选择合适的图片格式和序列化数据格式；使用IntentService或者结合HanderThread，AsycnTask Loader实现的Service；在build.gradle文件中配置minifEnable为true，它会帮助移除没有用到的代码</li>
+</ul>
+<p><strong>9. Android性能优化典范 - 第5季</strong><br><a href="http://hukai.me/android-performance-patterns-season-5/" target="_blank" rel="external">http://hukai.me/android-performance-patterns-season-5/</a><br>内容有：多线程并发的性能问题，介绍了AsyncTask，HandlerThread，IntentService与ThreadPool分别适合的使用场景以及各自的使用注意事项。</p>
+<ul>
+<li>AsyncTask: 为UI线程与工作线程之间进行快速的切换提供一种简单便捷的机制。适用于当下立即需要启动，但是异步执行的生命周期短暂的使用场景。</li>
+<li>HandlerThread: 为某些回调方法或者等待某些任务的执行设置一个专属的线程，并提供线程任务的调度机制。</li>
+<li>ThreadPool: 把任务分解成不同的单元，分发到各个不同的线程上，进行同时并发处理。</li>
+<li>IntentService: 适合于执行由UI触发的后台Service任务，并可以把后台任务执行的情况通过一定的机制反馈给UI。</li>
+</ul>
+<p>HandlerThread：</p>
+<ol>
+<li>Looper: 能够确保线程持续存活并且可以不断的从任务队列中获取任务并进行执行。</li>
+<li>Handler: 能够帮助实现队列任务的管理，不仅仅能够把任务插入到队列的头部，尾部，还可以按照一定的时间延迟来确保任务从队列中能够来得及被取消掉。</li>
+<li>MessageQueue: 使用Intent，Message，Runnable作为任务的载体在不同的线程之间进行传递。<br>把上面三个组件打包到一起进行协作，这就是HandlerThread。<br>当程序被启动，系统会帮忙创建进程以及相应的主线程，而这个主线程其实就是一个HandlerThread。这个主线程会需要处理系统事件，输入事件，系统回调的任务，UI绘制等等任务，为了避免主线程任务过重，我们就会需要不断的开启新的工作线程来处理那些子任务。</li>
+</ol>
+<p>AsyncTask：<br>AsyncTask把在主线程里面的准备工作放到onPreExecute()方法里面进行执行，doInBackground()方法执行在工作线程中，用来处理那些繁重的任务，一旦任务执行完毕，就会调用onPostExecute()方法返回到主线程。<br>如果AsyncTask创建时不在UI线程，会导致AsyncTask的静态成员变量sHandler去尝试获取异步线程的looper，最终handleMessage回调也不会在UI线程，与设计违背，例如onPostExecute()头上有标记@MainThread。新版代码虽然没这个问题了，但我们写代码时无法预知用户手机的版本，为兼容旧版本，故新版源码构造方法的注释仍写着必须在UI线程创建.</p>
+<ol>
+<li>默认情况下，所有的AsyncTask任务都是被线性调度执行的，他们处在同一个任务队列当中，按顺序逐个执行。可以使用AsyncTask.executeOnExecutor()强制指定AsyncTask使用线程池并发调度任务。</li>
+<li>调用cancel()方法后不一定立即终止任务，线程本身并不具备中止正在执行的代码的能力。</li>
+<li>避免把AsyncTask写成Activity的内部类</li>
+<li>如果使用AsyncTask，会因为AsyncTask默认的线性执行的特性(即使换成并发执行)会导致因为无法把任务及时传递给工作线程而导致任务在主线程中被延迟，直到工作线程空闲，才可以把任务切换到工作线程中进行执行。<br>而HandlerThread正好是一个执行在工作线程，同时又能够处理队列中的复杂任务</li>
+</ol>
+<ul>
+<li>HandlerThread比较合适处理那些在工作线程执行，需要花费时间偏长的任务。我们只需要把任务发送给HandlerThread，然后就只需要等待任务执行结束</li>
+<li>IntentService继承自普通Service同时又在内部创建了一个HandlerThread，在onHandlerIntent()的回调里面处理扔到IntentService的任务</li>
+</ul>
+<p><strong>10. Android性能优化典范 - 第6季</strong><br><a href="http://hukai.me/android-performance-patterns-season-6/" target="_blank" rel="external">http://hukai.me/android-performance-patterns-season-6/</a><br>内容主要有：程序启动时间性能优化的三个方面：优化activity的创建过程，优化application对象的启动过程，正确使用启动显屏达到优化程序启动性能的目的。另外还介绍了减少安装包大小的checklist以及如何使用VectorDrawable来减少安装包的大小。</p>
+<ul>
+<li>当用户点击图标开始，系统会立即为APP创建独立的专属进程，然后显示启动窗口，直到APP在自己的进程里完成了程序的创建以及主线程完成了Activity的初始化显示操作，再然后系统进程就会把启动窗口替换成APP的显示窗口。</li>
+<li>对于启动速度，我们能够控制并且需要关注的是：<br>Activity的onCreate流程；Application的onCreate流程；部分APP会提供自定义的启动窗口</li>
+<li>工具：</li>
+</ul>
+<ol>
+<li>display time：从Android KitKat版本(4.4)开始，Logcat中会输出从程序启动到某个Activity显示到画面上所花费的时间。</li>
+<li>reportFullyDrawn方法：异步加载完毕之后调用activity.reportFullyDrawn()方法来告诉系统此时的状态。</li>
+<li>Method Tracing工具获取具体的耗时分布情况。</li>
+<li>Systrace：可以在onCreate方法里面添加trace.beginSection()与trace.endSection()方法来声明需要跟踪的起止位置，系统会帮忙统计中间经历过的函数调用耗时，并输出报表。</li>
+</ol>
+<ul>
+<li>启动优化：优化布局耗时；异步延迟加载；设置启动窗口主题；减少应用程序安装包的大小（开启了minifEnabled与shrinkResources的属性；提供对应分辨率的图片资源；使用VectorDrawable矢量图替代传统的PNG/JPEG图片；复用已经存在的资源图片）</li>
+</ul>
+<hr>
+<p>注：渲染操作通常依赖于两个核心组件：CPU与GPU。<br>CPU负责包括Measure，Layout，Record，Execute的计算操作，GPU负责Rasterization(栅格化)操作。CPU通常存在的问题的原因是存在非必需的视图组件，它不仅仅会带来重复的计算操作，而且还会占用额外的GPU资源。</p>
+<p>Resterization栅格化是绘制那些Button，Shape，Path，String，Bitmap等组件最基础的操作。它把那些组件拆分到不同的像素上进行显示。这是一个很费时的操作，GPU的引入就是为了加快栅格化的操作。</p>
+<h2 id="CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。"><a href="#CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。" class="headerlink" title="CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。"></a>CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。</h2><p><strong>11. Android内存优化之OOM</strong><br><a href="http://hukai.me/android-performance-oom/" target="_blank" rel="external">http://hukai.me/android-performance-oom/</a></p>
+<p>一、内存溢出 out of memory：</p>
+<ol>
+<li>减小对象的内存占用</li>
+</ol>
+<ul>
+<li>使用更加轻量的数据结构，考虑使用ArrayMap/SparseArray而不是HashMap等。</li>
+<li>避免在Android里面使用Enum</li>
+<li>减小Bitmap对象的内存占用（inSampleSize：缩放比例，decode format：解码格式）</li>
+<li>使用更小的图片</li>
+</ul>
+<ol>
+<li>内存对象的重复利用</li>
+</ol>
+<ul>
+<li>复用系统自带的资源</li>
+<li>注意在ListView/GridView等出现大量重复子组件的视图里面对ConvertView的复用</li>
+<li>Bitmap对象的复用</li>
+<li>避免在onDraw方法里面执行对象的创建，否则很容易引起频繁的gc，甚至是内存抖动。</li>
+<li>StringBuilder字符串拼接</li>
+</ul>
+<ol>
+<li>避免对象的内存泄露（LeakCanary开源工具）</li>
+<li>内存使用策略优化</li>
+</ol>
+<ul>
+<li>使用nano protobufs序列化数据</li>
+<li>谨慎使用依赖注入框架</li>
+</ul>
+<p>二、内存泄露 memory leak：</p>
+<ol>
+<li>注意Activity的泄漏</li>
+</ol>
+<ul>
+<li>内部类引用导致Activity的泄漏<br>Handler导致的Activity泄漏，如果Handler中有延迟的任务或者是等待执行的任务队列过长，都有可能因为Handler继续执行而导致Activity发生泄漏。此时的引用关系链是Looper -&gt; MessageQueue -&gt; Message -&gt; Handler -&gt; Activity。<br>解决方案：<br>执行remove Handler消息队列中的消息与runnable对象。或者是使用Static + WeakReference的方式来达到断开Handler与Activity之间存在引用关系的目的。或者类似LiveData被监听，变化时只会通知当前对用户可见的观察者。</li>
+<li>Context被传递到其他实例中，这可能导致自身被引用而发生泄漏。<br>解决方案：<br>尽量使用static类型的内部类，同时使用WeakReference的机制来避免。</li>
+</ul>
+<ol>
+<li>考虑使用Application Context而不是Activity Context</li>
+<li>注意临时Bitmap对象的及时回收</li>
+<li>注意监听器的注销</li>
+<li>注意缓存容器中的对象泄漏</li>
+<li>注意WebView的泄漏：为WebView另开进程，通过AIDL与主进程进行通信，根据业务选择合适的时机进行销毁，从而达到内存的完整释放。</li>
+<li>注意Cursor对象是否及时关闭：数据库查询</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/性能优化/" rel="tag">#性能优化</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/12/判断一个链表是否为回文结构/" rel="next" title="判断一个链表是否为回文结构">
+                <i class="fa fa-chevron-left"></i> 判断一个链表是否为回文结构
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Ms.Felicia" />
+          <p class="site-author-name" itemprop="name">Ms.Felicia</p>
+          <p class="site-description motion-element" itemprop="description">关注本质，解其源型</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hanqyue" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/2205db2aaab4/latest_articles" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5133444949/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#总结自胡凯的博客，基于Android官方课程的总结，较为全面。"><span class="nav-number">1.</span> <span class="nav-text">总结自胡凯的博客，基于Android官方课程的总结，较为全面。</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。"><span class="nav-number"></span> <span class="nav-text">CPU负责把UI组件计算成Polygons，Texture纹理，然后交给GPU进行栅格化渲染。</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ms.Felicia</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("d7fLMmsvRPaPGFhukBds981x-gzGzoHsz", "dWYwRtcqQETH8vlBpWgsnV3K");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
